@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="authorization">
+    <div class="authorization__title">Профиль</div>
+
+    <div class="info underline">
+      <div class="info__title">Логин:</div>
+      <div class="info__text">{{user.login}}</div>
+    </div>
+
+    <div class="info underline">
+      <div class="info__title">Фамилия:</div>
+      <input #surname type="text"
+             oninput="this.value=this.value.replace(/[^a-zA-ZА-Яа-яЁё]/g,'');"
+             placeholder="Фамилия" class="info__text" value="{{user.surname}}">
+    </div>
+
+    <div class="info underline">
+      <div class="info__title">Имя:</div>
+      <input #name type="text"
+             oninput="this.value=this.value.replace(/[^a-zA-ZА-Яа-яЁё]/g,'');"
+             pattern="[A-Za-zА-Яа-яЁё]" placeholder="Имя" class="info__text" value="{{user.name}}">
+    </div>
+
+    <div class="info underline">
+      <div class="info__title">Отчество:</div>
+      <input #patronymic type="text"
+             oninput="this.value=this.value.replace(/[^a-zA-ZА-Яа-яЁё]/g,'');"
+             pattern="[A-Za-zА-Яа-яЁё]" placeholder="Отчество" class="info__text" value="{{user.patronymic}}">
+    </div>
+
+    <button class="authorization__enter" (click)="saveChange(surname.value, name.value, patronymic.value)">Сохранить</button>
+
+    <div class="authorization__exit" routerLink="/">Выйти из аккаунта</div>
+
+    <div class="authorization__registration" routerLink="/main">Назад</div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="task" [ngClass]="{'task-done': check.checked}">
+  <input #check class="task__checkbox" type="checkbox" (change)="onCheckbox(task)" [checked]="task.completed">
+  <button class="task__delete" type="button" (click)="onDelete(task.id)"  >X</button>
+  <div class="task__text" contenteditable="true" [textContent]="task.text"></div>
+</div>
+

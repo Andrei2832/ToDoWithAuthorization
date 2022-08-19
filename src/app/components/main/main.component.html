@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="main">
+    <button class="main__profile" routerLink="/profile">Профиль</button>
+  </div>
+
+  <div class="add-task">
+    <div class="add-task__title">Новая задача:</div>
+    <input #task class="add-task__text" placeholder="введите задачу">
+    <button class="add-task__add" (click)="addTask(task.value)">Добавить</button>
+  </div>
+
+    <app-list class="list" *ngFor="let task of tasks" [task]="task">
+    </app-list>
+
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="registration">
+    <div class="registration__title">Регистрация</div>
+
+    <div class="login underline">
+      <img class="login__image" src="assets/Images/user.png" alt="">
+      <input #login (input)="inputChange(login)" autofocus placeholder="Логин" class="login__text ">
+      <p *ngIf="checkExistsLogin" class="login__checkLogin">логин уже используется</p>
+    </div>
+
+    <div class="password underline">
+      <img class="password__image" src="assets/Images/key.png" alt="">
+      <input #password (input)="inputChange(password)" type="password" placeholder="Пароль" class="password__text">
+    </div>
+
+    <div class="repeat-password underline">
+      <input #repeatPassword type="password" placeholder="Повтор пароля" class="repeat-password__text">
+      <p *ngIf="checkRepeatPassword" class="repeat-password__checkPassword">пароли не совпадают</p>
+    </div>
+
+    <div class="registration__enter" (click)="registration(login, password, repeatPassword)">
+      Зарегистрироваться
+    </div>
+
+    <div class="registration__cancel" routerLink="/authorization">назад</div>
+  </div>
+</div>

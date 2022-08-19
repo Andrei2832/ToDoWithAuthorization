@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="authorization">
+    <div class="authorization__title">Вход</div>
+
+    <div class="login underline">
+      <img class="login__image" src="assets/Images/user.png" alt="">
+      <input #login autocomplete="on" (input)="inputChange(login)" autofocus placeholder="Логин" class="login__text">
+    </div>
+
+    <div class="password underline">
+      <img class="password__image" src="assets/Images/key.png" alt="">
+      <input #password (input)="inputChange(password)" type="password" placeholder="Пароль" class="password__text">
+    </div>
+    <p *ngIf="!checkLoginANDPassword" class="check">логин или пароль не верны</p>
+
+    <button (click)="authorizationUser(login, password)" class="authorization__enter">Вход</button>
+
+    <div class="authorization__registration" routerLink="/registration">регистрация</div>
+  </div>
+</div>
+
