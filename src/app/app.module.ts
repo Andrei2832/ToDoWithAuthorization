@@ -8,16 +8,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ListComponent } from './components/list/list.component';
-import {RouterModule, Routes} from "@angular/router";
-
-const appRoutes: Routes = [
-  { path: '', component: AuthorizationComponent},
-  { path: 'authorization', component: AuthorizationComponent},
-  { path: 'registration', component: RegistrationComponent},
-  { path: 'main', component: MainComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: '**', component: AuthorizationComponent},
-];
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,7 +22,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

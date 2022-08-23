@@ -1,27 +1,47 @@
-<div class="container">
+<form [formGroup]="myForm" class="container">
   <div class="registration">
     <div class="registration__title">Регистрация</div>
 
     <div class="login underline">
       <img class="login__image" src="assets/Images/user.png" alt="">
-      <input #login (input)="inputChange(login)" autofocus placeholder="Логин" class="login__text ">
-      <p *ngIf="checkExistsLogin" class="login__checkLogin">логин уже используется</p>
+      <input autofocus
+             class="login__text"
+             formControlName="userLogin"
+             name="login"
+             pattern="^[^\s]+(\s+[^\s]+)*$"
+             placeholder="Логин"
+             required>
     </div>
 
     <div class="password underline">
       <img class="password__image" src="assets/Images/key.png" alt="">
-      <input #password (input)="inputChange(password)" type="password" placeholder="Пароль" class="password__text">
+      <input formControlName="userPassword"
+             name="login"
+             pattern="^[^\s]+(\s+[^\s]+)*$"
+             required
+             type="password"
+             placeholder="Пароль"
+             class="password__text">
     </div>
 
     <div class="repeat-password underline">
-      <input #repeatPassword type="password" placeholder="Повтор пароля" class="repeat-password__text">
-      <p *ngIf="checkRepeatPassword" class="repeat-password__checkPassword">пароли не совпадают</p>
+      <input formControlName="userRepeatPassword"
+             name="login"
+             pattern="^[^\s]+(\s+[^\s]+)*$"
+             required
+             type="password"
+             placeholder="Повтор пароля"
+             class="repeat-password__text">
     </div>
 
-    <div class="registration__enter" (click)="registration(login, password, repeatPassword)">
+    <p *ngIf="showError" class="registration__error">{{textError}}</p>
+
+    <button (click)="registration(myForm.controls['userLogin'].value, myForm.controls['userPassword'].value, myForm.controls['userRepeatPassword'].value)"
+            [disabled]="myForm.controls['userLogin'].invalid || myForm.controls['userPassword'].invalid || myForm.controls['userRepeatPassword'].invalid"
+            class="registration__enter">
       Зарегистрироваться
-    </div>
+    </button>
 
     <div class="registration__cancel" routerLink="/authorization">назад</div>
   </div>
-</div>
+</form>

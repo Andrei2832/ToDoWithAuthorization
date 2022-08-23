@@ -1,21 +1,41 @@
-<div class="container">
+<form [formGroup]="myForm"  class="container">
   <div class="authorization">
     <div class="authorization__title">Вход</div>
 
     <div class="login underline">
       <img class="login__image" src="assets/Images/user.png" alt="">
-      <input #login autocomplete="on" (input)="inputChange(login)" autofocus placeholder="Логин" class="login__text">
+      <input autofocus
+             class="login__text"
+             formControlName="userLogin"
+             name="login"
+             pattern="^[^\s]+(\s+[^\s]+)*$"
+             placeholder="Логин"
+             required>
     </div>
 
     <div class="password underline">
       <img class="password__image" src="assets/Images/key.png" alt="">
-      <input #password (input)="inputChange(password)" type="password" placeholder="Пароль" class="password__text">
+      <input class="password__text"
+             formControlName="userPassword"
+             name="password"
+             pattern="^[^\s]+(\s+[^\s]+)*$"
+             placeholder="Пароль"
+             required
+             type="password">
     </div>
-    <p *ngIf="!checkLoginANDPassword" class="check">логин или пароль не верны</p>
 
-    <button (click)="authorizationUser(login, password)" class="authorization__enter">Вход</button>
+    <p *ngIf="showError" class="authorization__error">{{textError}}</p>
 
-    <div class="authorization__registration" routerLink="/registration">регистрация</div>
+    <button (click)="authorizationUser(myForm.controls['userLogin'].value,myForm.controls['userPassword'].value )"
+            [disabled]="myForm.controls['userLogin'].invalid || myForm.controls['userPassword'].invalid"
+            class="authorization__enter">
+      Вход
+    </button>
+
+    <div class="authorization__registration"
+         routerLink="/registration">
+      регистрация
+    </div>
   </div>
-</div>
+</form>
 

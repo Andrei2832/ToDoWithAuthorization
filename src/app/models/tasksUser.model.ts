@@ -1,17 +1,19 @@
-export class TasksUserModel {
-  _id: string;
-  _idUser: string;
-  _text: string;
-  _completed: boolean;
+import {ITasksUser} from "../interfaces/tasks-user.interface";
 
-  constructor(idUser: string, text: string, completed: boolean, id: string = '') {
-    this._id = id ? id : this.uuidv4();
-    this._idUser = idUser;
-    this._text = text;
-    this._completed = completed;
+export class TasksUserModel {
+  public _id: string;
+  public _idUser: string;
+  public _text: string;
+  public _completed: boolean;
+
+  constructor(data: ITasksUser) {
+    this._id = data.id ? data.id : this.uuidv4();
+    this._idUser = data.idUser;
+    this._text = data.text;
+    this._completed = data.completed;
   }
 
-  uuidv4() {
+  private uuidv4() {
     return ("10000000-1000-4000-8000-100000000000").replace(/[018]/g, c =>
       (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
     );

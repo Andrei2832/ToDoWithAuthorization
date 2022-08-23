@@ -1,21 +1,23 @@
-export class UserModel{
-  _id: string;
-  _login: string;
-  _password: string;
-  _surname?: string;
-  _name?: string;
-  _patronymic?: string;
+import {IUser} from "../interfaces/user.interface";
 
-  constructor(login: string, password: string, surname: string = '', name: string = '', patronymic: string = '', id: string = '') {
-    this._id = id ? id : this.uuidv4() ;
-    this._login = login;
-    this._password = password;
-    this._surname = surname;
-    this._name = name;
-    this._patronymic = patronymic;
+export class User{
+  public _id: string;
+  public _login: string;
+  public _password: string;
+  public _surname: string;
+  public _name: string;
+  public _patronymic: string;
+
+  constructor(data: IUser) {
+    this._id = data.id ? data.id : this.uuidv4() ;
+    this._login = data.login;
+    this._password = data.password;
+    this._surname = data.surname || '';
+    this._name = data.name || '';
+    this._patronymic = data.patronymic || '';
   }
 
-  uuidv4() {
+  public uuidv4() {
     return ("10000000-1000-4000-8000-100000000000").replace(/[018]/g, c =>
       (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
     );

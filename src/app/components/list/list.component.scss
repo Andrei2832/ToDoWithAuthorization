@@ -1,49 +1,43 @@
-.tasks{
-  width: 600px;
-  height: auto;
-  padding: 0;
-}
+//.tasks{
+//  width: 600px;
+//  height: auto;
+//  padding: 0;
+//}
 .task{
   list-style-type: none;
   padding: 10px 5px 0 5px;
-}
-.task__subtitle{
-  text-transform: uppercase;
-  font-family: Arial, serif;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 0 10px 5px;
-  padding: 5px;
-}
-.task__checkbox{
-  transform: scale(2);
-  position: absolute;
-  margin: 10px 10px 0 10px;
-}
-.task__text{
-  word-wrap:break-word;
-  display: block;
-  font-family: Arial, serif;
-  font-size: 18px;
-  height: auto;
-  width: 520px;
-  padding: 5px;
-  margin: 0 40px 0 40px;
-  box-sizing: border-box;
 
+  &__checkbox{
+    transform: scale(2);
+    position: absolute;
+    margin: 10px 10px 0 10px;
+    width: 20px;
+    height: 20px;
+  }
+  &__text{
+    word-wrap:break-word;
+    display: block;
+    font-family: Arial, serif;
+    font-size: 18px;
+    height: auto;
+    width: 520px;
+    padding: 5px;
+    margin: 0 40px 0 40px;
+    box-sizing: border-box;
+  }
+  &__delete{
+    position: absolute;
+    margin: 0 0 0 570px;
+    font-size: 24px;
+    background-color: transparent;
+    color: red;
+    border-color: transparent;
+  }
+  &__delete:hover{
+    color: #a40b0b;
+  }
 }
-.task__delete{
-  position: absolute;
-  margin: 0 0 0 570px;
-  font-size: 24px;
-  background-color: transparent;
-  color: red;
-  visibility: hidden;
-  border-color: transparent;
-}
-.task__delete:hover{
-  color: #a40b0b;
-}
+
 .task:hover .task__delete{
   visibility: visible;
 }

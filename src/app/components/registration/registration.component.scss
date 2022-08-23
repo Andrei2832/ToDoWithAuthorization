@@ -46,6 +46,11 @@
       color: grey;
     }
   }
+  &__error {
+    display: block;
+    align-self: center;
+    color: red;
+  }
 }
 .login{
   margin-bottom: 20px;
@@ -128,5 +133,9 @@
     margin-left: 260px;
     color: red;
   }
+}
+
+input.ng-touched.ng-invalid {
+  border-bottom: solid 1px red;
 }
 

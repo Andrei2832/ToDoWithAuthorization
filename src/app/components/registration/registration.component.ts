@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Element} from "@angular/compiler";
-import {UserModel} from "../../models/user.model";
+import {Component, OnInit} from '@angular/core';
+import {User} from "../../models/user.model";
 import {LocalstorageService} from "../../services/localstorage.service";
 import {DataService} from "../../services/data.service";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-registration',
@@ -11,53 +12,72 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  public myForm: FormGroup
 
-  public checkRepeatPassword: boolean = false;
-  public checkExistsLogin: boolean = false;
+  public showError: boolean = false;
+  public textError: string;
+
+  private usersSub: Subscription;
+  public users: User[];
 
   constructor(
     private localstorageService: LocalstorageService,
     private dataService: DataService,
     private router: Router,
-  ) { }
+  ) {
+    this.myForm = new FormGroup({
+      userLogin: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[^\s]+(\s+[^\s]+)*$')
+      ]),
+      userPassword: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[^\s]+(\s+[^\s]+)*$')
+      ]),
+      userRepeatPassword: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[^\s]+(\s+[^\s]+)*$')
+      ]),
+    })
+    this.usersSub = this.localstorageService.getUsers().subscribe((items) => this.users = items)
+  }
 
   public ngOnInit(): void {
   }
 
+  public registration(login: string, password: string, repeatPassword: string): void{
+    const minValuePassword: number = 6
 
-  public registration(login: HTMLInputElement, password: HTMLInputElement, repeatPassword: HTMLInputElement): void{
-    this.checkExistsLogin = false
+    if (password === repeatPassword){
+      if (password.length >= minValuePassword){
+        if (password === repeatPassword){
+          let UserExists = !!(this.users.find((user) => user.login === login));
 
-    if (!login.value.trim()){
-      login.classList.add('underline-red')
-    }
-    if (!password.value.trim() || password.value.trim().length < 6){
-      password.classList.add('underline-red')
-    }
-    this.checkRepeatPassword = !(password.value.trim() === repeatPassword.value.trim());
-
-    if (login.value.trim() && password.value.trim() && repeatPassword.value.trim() && password.value.trim().length > 5){
-      if (password.value.trim() === repeatPassword.value.trim()){
-        let allUsers = this.dataService.users
-
-        let checkExistsUser = !(allUsers.map((user) => {
-          return user.login === login.value.trim();
-        })).includes(true)
-
-        if (checkExistsUser) {
-          let newUser = new UserModel(login.value.trim(), password.value.trim())
-          allUsers.push(newUser)
-          this.localstorageService.setUsers(allUsers)
-          this.router.navigate(['authorization'])
+          if (!UserExists) {
+            let newUser = new User({
+              login: login,
+              password: password
+            })
+            this.users.push(newUser)
+            this.localstorageService.setUsers(this.users)
+            this.router.navigate(['/main'])
+          }
+          else{
+            this.showError = true;
+            this.textError = 'Логин уже используется'
+          }
         }
-        else{
-          this.checkExistsLogin = true
-        }
+      }else {
+        this.showError = true;
+        this.textError = 'Пароль меньше 6 символов'
       }
+    }else {
+      this.showError = true;
+      this.textError = 'Пароли не совпадают'
     }
+
+
   }
 
-  public inputChange(element: HTMLInputElement): void{
-    element.classList.remove('underline-red')
-  }
+
 }

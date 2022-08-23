@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../../services/data.service";
-import {UserModel} from "../../models/user.model";
+import {User} from "../../models/user.model";
 import {LocalstorageService} from "../../services/localstorage.service";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -11,30 +12,32 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
 
+  public user: User = this.dataService.userNow;
 
-  public user: UserModel = this.dataService.userNow || new UserModel('','');
+  private usersSub: Subscription;
+  public users: User[];
 
   constructor(
     private dataService: DataService,
     private localstorageService: LocalstorageService,
     private router: Router,
-  ) {}
+  ) {
+    this.usersSub = this.localstorageService.getUsers().subscribe((items) => this.users = items)
+  }
 
   public ngOnInit(): void {
   }
 
   public saveChange(surname: string, name: string, patronymic: string): void{
-    let allUsers = this.dataService.users
-    allUsers.map((items) => {
+    this.users.map((items) => {
       if (items.login === this.user.login){
         items.surname = surname;
         items.name = name;
         items.patronymic = patronymic;
-        this.localstorageService.setUserNow(items)
         this.dataService.userNow = items
       }
     })
-    this.localstorageService.setUsers(allUsers)
-    this.router.navigate(['main'])
+    this.localstorageService.setUsers(this.users)
+    this.router.navigate(['/main'])
   }
 }
