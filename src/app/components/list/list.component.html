@@ -1,6 +1,42 @@
-<form *ngFor="let task of tasks" class="task" [ngClass]="{'task-done': check.checked}" >
-  <input #check class="task__checkbox" type="checkbox"  (change)="onCheckbox(task)" [checked]="task.completed">
-  <button class="task__delete" type="button" (click)="onDelete(task)"  >X</button>
-  <div #text class="task__text" (blur)="changeTextTask(task, text)" contenteditable="true" [textContent]="task.text"></div>
+<form [formGroup]="myForm">
+  <div class="add-task">
+    <div class="add-task__title">
+      Новая задача:
+    </div>
+    <input
+      formControlName="textTask"
+      name="textTask"
+      required
+      class="add-task__text"
+      placeholder="введите задачу">
+    <button class="add-task__add"
+            [disabled]="myForm.controls['textTask'].invalid"
+            (click)="addTask()">
+      Добавить
+    </button>
+  </div>
+
+  <div *ngFor="let task of tasksUser"
+       class="task"
+       [ngClass]="{'task-done': task.completed}">
+    <input class="task__checkbox"
+           type="checkbox"
+           (change)="onCheckbox(task)"
+           [checked]="task.completed">
+    <button class="task__delete"
+            type="button"
+            (click)="onDelete(task)">
+      X
+    </button>
+    <div #text
+         class="task__text"
+         (blur)="changeTextTask(task, text)"
+         contenteditable="true"
+         [textContent]="task.text">
+
+    </div>
+  </div>
+
 </form>
+
 

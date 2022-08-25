@@ -1,18 +1,9 @@
 <div class="container">
-    <p class="main">
-      <button class="main__profile" (click)="showProfile()">Профиль</button>
-    </p>
+  <p class="main">
+    <button class="main__list" (click)="showList()">Список задач</button>
+    <button class="main__profile" (click)="showProfile()">Профиль</button>
+  </p>
 
-
-  <div class="add-task">
-    <div class="add-task__title">Новая задача:</div>
-    <input #task class="add-task__text" placeholder="введите задачу">
-    <button class="add-task__add" (click)="addTask(task.value)">Добавить</button>
-  </div>
-
-  <app-list [tasks]="tasks" [allTasks]="tasksAll" ></app-list>
-
-  <router-outlet ></router-outlet>
-
+  <router-outlet></router-outlet>
 
 </div>

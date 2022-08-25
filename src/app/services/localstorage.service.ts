@@ -1,35 +1,39 @@
 import { Injectable } from '@angular/core';
-import {User} from "../models/user.model";
-import {Observable, of} from "rxjs";
-import {ConvertDataService} from "./convert-data.service";
-import {TasksUserModel} from "../models/tasksUser.model";
+import { User } from '../models/user.model';
+import { map, Observable, of } from 'rxjs';
+import { TasksUserModel } from '../models/tasksUser.model';
+import { IUser } from '../interfaces/user.interface';
+import { ITasksUser } from '../interfaces/tasks-user.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalstorageService {
+  constructor() {}
 
-  constructor(
-    private convertDataService: ConvertDataService,
-  ) { }
-
-  public getUsers(): Observable<User[]>{
+  public getUsers(): Observable<User[]> {
     const localStorageData: string = localStorage.getItem('users') || '';
-    return this.convertDataService.convertUsers(of(!!localStorageData ? JSON.parse(localStorageData) : []))
+    return of(!!localStorageData ? JSON.parse(localStorageData) : []).pipe(
+      map((data: IUser[]) => data.map((user: IUser) => new User(user)))
+    );
   }
   public setUsers(users: User[]): void {
     localStorage.setItem('users', JSON.stringify(users));
   }
 
-  public getTask(): Observable<TasksUserModel[]>{
+  public getTask(): Observable<TasksUserModel[]> {
     const localStorageData: string = localStorage.getItem('tasksUser') || '';
-    return this.convertDataService.convertTasksUsers(of(!!localStorageData ? JSON.parse(localStorageData) : []))
+    return of(!!localStorageData ? JSON.parse(localStorageData) : []).pipe(
+      map((data: ITasksUser[]) =>
+        data.map((task: ITasksUser) => new TasksUserModel(task))
+      )
+    );
   }
   public setTask(tasksUser: TasksUserModel[]): void {
     localStorage.setItem('tasksUser', JSON.stringify(tasksUser));
   }
 
-  public deleteDataLocalStorage(): void{
+  public deleteDataLocalStorage(): void {
     localStorage.removeItem('users');
   }
 }

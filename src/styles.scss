@@ -1,7 +1,21 @@
-*{
+* {
   font-family: monospace;
   cursor: default;
 }
-input {
-  all: unset;
+
+input, button, textarea {
+  resize: none;
+}
+input{
+  outline: none;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
 }

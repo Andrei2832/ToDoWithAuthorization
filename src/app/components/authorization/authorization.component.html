@@ -26,7 +26,7 @@
 
     <p *ngIf="showError" class="authorization__error">{{textError}}</p>
 
-    <button (click)="authorizationUser(myForm.controls['userLogin'].value,myForm.controls['userPassword'].value )"
+    <button (click)="authorizationUser()"
             [disabled]="myForm.controls['userLogin'].invalid || myForm.controls['userPassword'].invalid"
             class="authorization__enter">
       Вход

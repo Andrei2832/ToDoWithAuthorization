@@ -11,6 +11,7 @@
              pattern="^[^\s]+(\s+[^\s]+)*$"
              placeholder="Логин"
              required>
+
     </div>
 
     <div class="password underline">
@@ -24,7 +25,7 @@
              class="password__text">
     </div>
 
-    <div class="repeat-password underline">
+    <div *ngIf="myForm.controls['userPassword'].valid" class="repeat-password underline">
       <input formControlName="userRepeatPassword"
              name="login"
              pattern="^[^\s]+(\s+[^\s]+)*$"
@@ -36,9 +37,10 @@
 
     <p *ngIf="showError" class="registration__error">{{textError}}</p>
 
-    <button (click)="registration(myForm.controls['userLogin'].value, myForm.controls['userPassword'].value, myForm.controls['userRepeatPassword'].value)"
-            [disabled]="myForm.controls['userLogin'].invalid || myForm.controls['userPassword'].invalid || myForm.controls['userRepeatPassword'].invalid"
-            class="registration__enter">
+    <button
+      (click)="registration()"
+      [disabled]="myForm.controls['userLogin'].invalid || myForm.controls['userPassword'].invalid || myForm.controls['userRepeatPassword'].invalid"
+      class="registration__enter">
       Зарегистрироваться
     </button>
 

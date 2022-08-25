@@ -3,19 +3,20 @@
 //  height: auto;
 //  padding: 0;
 //}
-.task{
-  list-style-type: none;
-  padding: 10px 5px 0 5px;
+.task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &__checkbox{
+  &__checkbox {
     transform: scale(2);
-    position: absolute;
-    margin: 10px 10px 0 10px;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
+    z-index: 5;
   }
-  &__text{
-    word-wrap:break-word;
+
+  &__text {
+    word-wrap: break-word;
     display: block;
     font-family: Arial, serif;
     font-size: 18px;
@@ -25,7 +26,8 @@
     margin: 0 40px 0 40px;
     box-sizing: border-box;
   }
-  &__delete{
+
+  &__delete {
     position: absolute;
     margin: 0 0 0 570px;
     font-size: 24px;
@@ -33,15 +35,55 @@
     color: red;
     border-color: transparent;
   }
-  &__delete:hover{
+
+  &__delete:hover {
     color: #a40b0b;
   }
 }
 
-.task:hover .task__delete{
+.task:hover .task__delete {
   visibility: visible;
 }
-.task-done{
+
+.task-done {
   color: grey;
   text-decoration: line-through;
+}
+
+.add-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    text-align: right;
+    font-size: 18px;
+    width: 200px;
+    margin-right: 10px;
+  }
+
+  &__text {
+    background: transparent;
+    font-size: 16px;
+    min-width: 300px;
+    border: solid 1px white;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+  }
+
+  &__add {
+    background: transparent;
+    font-size: 16px;
+    width: 90px;
+    height: 30px;
+    margin: 5px;
+    color: white;
+    border: solid 1px gray;
+    cursor: pointer;
+
+    &:hover {
+      color: gray;
+    }
+  }
 }

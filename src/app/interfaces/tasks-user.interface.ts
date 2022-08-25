@@ -1,6 +1,6 @@
- export interface ITasksUser{
-  id?: string;
-  idUser: string;
-  text: string;
-  completed: boolean;
+export interface ITasksUser {
+  _id?: string;
+  _idUser: string;
+  _text: string;
+  _completed: boolean;
 }

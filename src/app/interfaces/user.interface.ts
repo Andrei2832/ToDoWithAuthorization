@@ -1,8 +1,8 @@
 export interface IUser {
-  id?: string,
-  login: string,
-  password: string,
-  surname?: string ,
-  name?: string,
-  patronymic?: string,
+  _id?: string;
+  _login: string;
+  _password: string;
+  _surname?: string;
+  _name?: string;
+  _patronymic?: string;
 }

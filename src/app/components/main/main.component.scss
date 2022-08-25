@@ -13,6 +13,19 @@
   display: flex;
   justify-content: right;
 
+  &__list{
+    background: transparent;
+    font-size: 24px;
+    width: 200px;
+    height: 50px;
+    margin: 5px;
+    color: white;
+    border: solid 1px gray;
+    cursor: pointer;
+    &:hover{
+      color: gray;
+    }
+  }
   &__profile{
     background: transparent;
     font-size: 24px;
@@ -27,38 +40,7 @@
     }
   }
 }
-.add-task{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__title{
-    text-align: right;
-    font-size: 18px;
-    width: 200px;
-    margin-right: 10px;
-  }
-  &__text{
-    font-size: 16px;
-    min-width: 300px;
-    border: solid 1px white;
-    border-radius: 5px;
-    padding: 5px;
-    color: white;
-  }
-  &__add{
-    background: transparent;
-    font-size: 16px;
-    width: 90px;
-    height: 30px;
-    margin: 5px;
-    color: white;
-    border: solid 1px gray;
-    cursor: pointer;
-    &:hover{
-      color: gray;
-    }
-  }
-}
+
 .list{
   display: flex;
   justify-content: center;
