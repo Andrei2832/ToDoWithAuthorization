@@ -1,4 +1,4 @@
-<form class="container">
+<form [formGroup]="myForm" class="container">
   <div class="profile">
     <div class="profile__title">Профиль</div>
 
@@ -9,24 +9,35 @@
 
     <div class="info underline">
       <div class="info__title">Фамилия:</div>
-      <input #surname type="text"
+      <input formControlName="UserSurname"
+             name="UserSurname"
+             type="text"
              (keydown)="checkValue($event)"
-             placeholder="Фамилия" class="info__text" value="{{user.surname}}">
+             placeholder="Фамилия"
+             class="info__text">
     </div>
 
     <div class="info underline">
       <div class="info__title">Имя:</div>
-      <input #name type="text"
-             (keydown)="checkValue($event)" placeholder="Имя" class="info__text" value="{{user.name}}">
+      <input formControlName="UserName"
+             name="UserSurname"
+             type="text"
+             (keydown)="checkValue($event)"
+             placeholder="Имя"
+             class="info__text">
     </div>
 
     <div class="info underline">
       <div class="info__title">Отчество:</div>
-      <input #patronymic type="text"
-             (keydown)="checkValue($event)" placeholder="Отчество" class="info__text" value="{{user.patronymic}}">
+      <input formControlName="UserSurname"
+             name="UsePatronymic"
+             type="text"
+             (keydown)="checkValue($event)"
+             placeholder="Отчество"
+             class="info__text">
     </div>
 
-    <button class="profile__enter" (click)="saveChange(surname.value, name.value, patronymic.value)">Сохранить
+    <button class="profile__enter" (click)="saveChange()">Сохранить
     </button>
 
     <div class="profile__exit" routerLink="/">Выйти из аккаунта</div>

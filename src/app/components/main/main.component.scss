@@ -1,4 +1,4 @@
-.container{
+.container {
   background: linear-gradient(90deg, #443750, #2d3655);
   width: 100%;
   height: 100%;
@@ -6,14 +6,15 @@
   top: 0;
   left: 0;
 }
-.main{
+
+.main {
   background: #352946;
   width: auto;
   height: 60px;
   display: flex;
   justify-content: right;
 
-  &__list{
+  &__list {
     background: transparent;
     font-size: 24px;
     width: 200px;
@@ -22,11 +23,13 @@
     color: white;
     border: solid 1px gray;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: gray;
     }
   }
-  &__profile{
+
+  &__profile {
     background: transparent;
     font-size: 24px;
     width: 150px;
@@ -35,13 +38,14 @@
     color: white;
     border: solid 1px gray;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: gray;
     }
   }
 }
 
-.list{
+.list {
   display: flex;
   justify-content: center;
   align-items: center;

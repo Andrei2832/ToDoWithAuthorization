@@ -49,7 +49,9 @@ export class ListComponent implements OnInit {
     let index = this.tasksUser.indexOf(task);
     this.tasksUser.splice(index, 1);
 
-    let indexAll = this.tasksAll.indexOf(task);
+    let indexAll = this.tasksAll.findIndex(
+      (tasks: TasksUserModel) => tasks.id === task.id
+    );
     this.tasksAll.splice(indexAll, 1);
 
     this.localstorageService.setTask(this.tasksAll);

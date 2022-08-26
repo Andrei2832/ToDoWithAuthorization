@@ -32,15 +32,16 @@ export class RegistrationComponent implements OnInit {
     });
     this.usersSub = this.localstorageService
       .getUsers()
-      .subscribe((items) => (this.users = items));
+      .subscribe((items: User[]) => (this.users = items));
   }
 
   public ngOnInit(): void {}
 
   public registration(): void {
-    let login = this.myForm.controls['userLogin'].value;
-    let password = this.myForm.controls['userPassword'].value;
-    let repeatPassword = this.myForm.controls['userRepeatPassword'].value;
+    let login: string = this.myForm.controls['userLogin'].value;
+    let password: string = this.myForm.controls['userPassword'].value;
+    let repeatPassword: string =
+      this.myForm.controls['userRepeatPassword'].value;
 
     const minValuePassword: number = 6;
 
@@ -55,7 +56,7 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    let UserExists = !!this.users.find((user) => user.login === login);
+    let UserExists = !!this.users.find((user: User) => user.login === login);
 
     if (UserExists) {
       this.showError = true;

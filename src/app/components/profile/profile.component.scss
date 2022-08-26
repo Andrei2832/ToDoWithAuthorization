@@ -1,17 +1,20 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.profile{
+
+.profile {
   text-align: center;
   margin: auto;
   color: white;
-  &__title{
+
+  &__title {
     font-size: 30px;
     margin: 10px;
   }
-  &__enter{
+
+  &__enter {
     font-size: 18px;
     width: 250px;
     background: transparent;
@@ -19,11 +22,13 @@
     padding: 7px;
     color: white;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: grey;
     }
   }
-  &__registration{
+
+  &__registration {
     color: white;
     width: 50px;
     padding: 0;
@@ -32,31 +37,37 @@
     cursor: pointer;
     font-size: 20px;
     margin-top: 20px;
-    &:hover{
+
+    &:hover {
       color: grey;
     }
   }
-  &__exit{
+
+  &__exit {
 
     margin-top: 10px;
     color: white;
     cursor: pointer;
     font-size: 16px;
-    &:hover{
+
+    &:hover {
       color: grey;
     }
   }
 }
-.info{
+
+.info {
   margin-bottom: 30px;
   display: flex;
-  &__title{
+
+  &__title {
     text-align: right;
     width: 120px;
     height: auto;
     font-size: 20px;
   }
-  &__text{
+
+  &__text {
     border-color: transparent;
     background: transparent;
     font-size: 20px;
@@ -68,9 +79,10 @@
 }
 
 
-.underline{
+.underline {
   position: relative;
-  &:after{
+
+  &:after {
     content: '';
     position: absolute;
     width: 365px;

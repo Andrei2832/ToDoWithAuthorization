@@ -30,14 +30,14 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
     });
     this.usersSub = this.localstorageService
       .getUsers()
-      .subscribe((items) => (this.users = items));
+      .subscribe((items: User[]) => (this.users = items));
   }
 
   public ngOnInit(): void {}
 
-  public authorizationUser() {
-    let login = this.myForm.controls['userLogin'].value;
-    let password = this.myForm.controls['userPassword'].value;
+  public authorizationUser(): void {
+    let login: string = this.myForm.controls['userLogin'].value;
+    let password: string = this.myForm.controls['userPassword'].value;
 
     let userSearch = this.users.find(
       (user: User) => user.login === login && user.password === password

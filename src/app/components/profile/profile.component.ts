@@ -4,6 +4,7 @@ import { User } from '../../models/user.model';
 import { LocalstorageService } from '../../services/localstorage.service';
 import { Event, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  public myForm: FormGroup;
   public user: User = this.dataService.userNow;
 
   private usersSub: Subscription;
@@ -21,6 +23,11 @@ export class ProfileComponent implements OnInit {
     private localstorageService: LocalstorageService,
     private router: Router
   ) {
+    this.myForm = new FormGroup({
+      UserSurname: new FormControl(this.user.surname, Validators.required),
+      UserName: new FormControl(this.user.name, Validators.required),
+      UsePatronymic: new FormControl(this.user.patronymic, Validators.required),
+    });
     this.usersSub = this.localstorageService
       .getUsers()
       .subscribe((items: User[]) => (this.users = items));
@@ -28,12 +35,17 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {}
 
-  public saveChange(surname: string, name: string, patronymic: string): void {
+  public saveChange(): void {
+    let surname: string = this.myForm.controls['UserSurname'].value;
+    let name: string = this.myForm.controls['UserName'].value;
+    let patronymic: string = this.myForm.controls['UsePatronymic'].value;
+
     this.users.map((items: User) => {
       if (items.login === this.user.login) {
         items.surname = surname;
         items.name = name;
         items.patronymic = patronymic;
+        this.user = items;
         this.dataService.userNow = items;
       }
     });

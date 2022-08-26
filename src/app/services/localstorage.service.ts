@@ -17,6 +17,7 @@ export class LocalstorageService {
       map((data: IUser[]) => data.map((user: IUser) => new User(user)))
     );
   }
+
   public setUsers(users: User[]): void {
     localStorage.setItem('users', JSON.stringify(users));
   }
@@ -29,11 +30,8 @@ export class LocalstorageService {
       )
     );
   }
+
   public setTask(tasksUser: TasksUserModel[]): void {
     localStorage.setItem('tasksUser', JSON.stringify(tasksUser));
-  }
-
-  public deleteDataLocalStorage(): void {
-    localStorage.removeItem('users');
   }
 }

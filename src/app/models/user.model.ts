@@ -33,6 +33,7 @@ export class User {
   public get login(): string {
     return this._login;
   }
+
   public set login(value: string) {
     this._login = value;
   }
@@ -40,6 +41,7 @@ export class User {
   public get password(): string {
     return this._password;
   }
+
   public set password(value: string) {
     this._password = value;
   }
@@ -47,6 +49,7 @@ export class User {
   public get surname(): string {
     return this._surname || '';
   }
+
   public set surname(value: string) {
     this._surname = value;
   }
@@ -54,6 +57,7 @@ export class User {
   public get name(): string {
     return this._name || '';
   }
+
   public set name(value: string) {
     this._name = value;
   }
@@ -61,6 +65,7 @@ export class User {
   public get patronymic(): string {
     return this._patronymic || '';
   }
+
   public set patronymic(value: string) {
     this._patronymic = value;
   }

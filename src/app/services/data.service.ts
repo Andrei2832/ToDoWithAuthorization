@@ -1,23 +1,11 @@
-import {Injectable, OnDestroy, OnInit} from '@angular/core';
-import {User} from "../models/user.model";
-import {LocalstorageService} from "./localstorage.service";
+import { Injectable } from '@angular/core';
+import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class DataService implements OnInit, OnDestroy{
-
+export class DataService {
   public userNow: User;
 
-  constructor(
-    private localstorageService: LocalstorageService,
-  ) {
-  }
-
-  public ngOnInit(): void {
-  }
-
-  public ngOnDestroy(): void {
-  }
-
+  constructor() {}
 }
